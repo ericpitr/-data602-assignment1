@@ -21,6 +21,21 @@ global new_position
 new_position = 0
 
 
+
+def process_input():
+     while True:
+          try:
+               line = input(' >> ')
+          except EOFError:
+               return
+          if line=='':
+               return
+          return line
+
+
+
+
+
 class Account:
 
 
@@ -94,10 +109,17 @@ class Menu:
                print('[9] Back')
                print('[0] Quit')
 
-               choice = input(' >> ')
-
+               #choice = input(' >> ')
+               
+          
+               choice = process_input()
+               
+               
                try:
+                    
+                                     
                     ch = int(choice)
+                   
 
                     if ch == 9:
                          break
@@ -108,6 +130,9 @@ class Menu:
                          quit()
 
                     selected = self.options[ch-1][1]
+                    #print(ch)
+                    #print(selected)
+                    
 
                except (KeyError, ValueError, IndexError):
                     print('Invalid choice.')
@@ -127,7 +152,7 @@ def trade():
 
      print('{:=^30}'.format('TRADE'))
 
-     stock_list = ['IBM', 'VZ', 'AMZN','PFE', 'XOM']
+     stock_list = ['QQQ', 'AAPL', 'INTC','MSFT', 'FB']
      stock = None
      side = None
      amount = None
@@ -201,9 +226,9 @@ def trade():
 def print_blotter():
      global acc
      print('{:=^30}'.format('Transactions'))
-     print('side\tticker\tquant\tprice\tmoney i/o\ttimestamp')
+     print('side\t\tticker\t\tquant\t\tprice\t\tmoney i/o\t\ttimestamp')
      for t in acc.transactions:
-          print(*t, sep='\t')
+          print(*t, sep='\t\t')
 
 
 greet = '{:=^30}'.format('MAIN MENU')
